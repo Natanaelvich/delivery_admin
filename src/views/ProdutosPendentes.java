@@ -1,11 +1,16 @@
 package views;
 
+import Dao.PedidosDao;
+import entites.PedidoPendente;
+import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 public class ProdutosPendentes extends javax.swing.JPanel {
 
+    private ArrayList<PedidoPendente> pedidoPendentes = PedidosDao.pegardadosPedidosPendente();
     public ProdutosPendentes() {
         initComponents();
         aumentaEmostra();
@@ -13,11 +18,13 @@ public class ProdutosPendentes extends javax.swing.JPanel {
 
     int[] x = {1, 2, 3, 4, 5,1, 2, 3, 4, 5,1, 2, 3, 4, 5,1, 2, 3, 4, 5,1, 2, 3, 4, 5,1, 2, 3, 4, 5};
 
+    
     private void aumentaEmostra() {
+        
         int y = 50;
         int height = 580;
-        for (int i = 0; i < x.length; i++) {
-            System.out.println("x");
+        for (int i = 0; i < pedidoPendentes.size(); i++) {
+            
 
             JPanel jPanel2DadosPedido = new javax.swing.JPanel();
 
@@ -44,6 +51,20 @@ public class ProdutosPendentes extends javax.swing.JPanel {
             jLabel2Cliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
             jPanel2DadosPedido.add(jLabel2Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+            
+             JLabel cliente = new javax.swing.JLabel();
+
+            cliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+            cliente.setForeground(new java.awt.Color(51, 51, 51));
+
+            cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+            cliente.setText(pedidoPendentes.get(i).getNome());
+
+            cliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+            jPanel2DadosPedido.add(cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
 
             //endereco
             JLabel jLabel3Endereco = new javax.swing.JLabel();
@@ -60,6 +81,19 @@ public class ProdutosPendentes extends javax.swing.JPanel {
 
             jPanel2DadosPedido.add(jLabel3Endereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
 
+               JLabel endereco = new javax.swing.JLabel();
+
+            endereco.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+            endereco.setForeground(new java.awt.Color(51, 51, 51));
+
+            endereco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+            endereco.setText(pedidoPendentes.get(i).getEndereco());
+
+            endereco.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+            jPanel2DadosPedido.add(endereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 120, -1, -1));
             //telefone
             JLabel jLabel1Telefone = new javax.swing.JLabel();
 
@@ -74,6 +108,20 @@ public class ProdutosPendentes extends javax.swing.JPanel {
             jLabel1Telefone.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
             jPanel2DadosPedido.add(jLabel1Telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
+            
+            JLabel telefone = new javax.swing.JLabel();
+
+            telefone.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+            telefone.setForeground(new java.awt.Color(51, 51, 51));
+
+            telefone.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+            telefone.setText(pedidoPendentes.get(i).getTelefone());
+
+            telefone.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+            jPanel2DadosPedido.add(telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
 
             //pedido
             JLabel jLabel4Produto = new javax.swing.JLabel();
@@ -90,6 +138,19 @@ public class ProdutosPendentes extends javax.swing.JPanel {
 
             jPanel2DadosPedido.add(jLabel4Produto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, -1, -1));
 
+             JLabel produto = new javax.swing.JLabel();
+
+            produto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+            produto.setForeground(new java.awt.Color(51, 51, 51));
+
+            produto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+            produto.setText(pedidoPendentes.get(i).getPedido());
+
+            produto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+            jPanel2DadosPedido.add(produto, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, -1, -1));
             //preco
             JLabel jLabel5Valor = new javax.swing.JLabel();
 
@@ -104,6 +165,20 @@ public class ProdutosPendentes extends javax.swing.JPanel {
             jLabel5Valor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
             jPanel2DadosPedido.add(jLabel5Valor, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
+            
+                   JLabel preco = new javax.swing.JLabel();
+
+            preco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+            preco.setForeground(new java.awt.Color(51, 51, 51));
+
+            preco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+            preco.setText(String.valueOf(pedidoPendentes.get(i).getPreco()));
+
+            preco.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+            jPanel2DadosPedido.add(preco, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, -1, -1));
 
             //status
             JLabel jLabel6Status = new javax.swing.JLabel();
@@ -119,6 +194,35 @@ public class ProdutosPendentes extends javax.swing.JPanel {
             jLabel6Status.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
             jPanel2DadosPedido.add(jLabel6Status, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, -1, -1));
+            
+            JLabel status = new javax.swing.JLabel();
+
+            status.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+            status.setForeground(new java.awt.Color(51, 51, 51));
+
+            status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+            status.setText(pedidoPendentes.get(i).getStatus());
+
+            status.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+            jPanel2DadosPedido.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, -1));
+
+            //botao de enviar 
+            
+            JButton jButton1 = new javax.swing.JButton();
+
+            jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            
+            jButton1.setText("Enviado");
+            
+            jPanel2DadosPedido.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, -1, -1));
+            int id = pedidoPendentes.get(i).getId();
+            jButton1.addActionListener((java.awt.event.ActionEvent evt) -> {
+                PedidosDao.atualizarstatusPedidoPendente(id);
+                jPanel2DadosPedido.setVisible(false);
+            });
 
             //separador
             JSeparator jSeparator1 = new javax.swing.JSeparator();
@@ -134,47 +238,6 @@ public class ProdutosPendentes extends javax.swing.JPanel {
             }
 
         }
-
-    }
-
-    private void gerenetePedidos() {
-
-        //250 de x de distancia
-        //peidido 1 base    
-        JPanel jPanel2DadosPedido = new javax.swing.JPanel();
-
-        jPanel2DadosPedido.setBackground(new java.awt.Color(204, 204, 204));
-
-        jPanel2DadosPedido.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 2, true));
-
-        jPanel2DadosPedido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-// Código de subcomponentes e layouts - não mostrados aqui
-        jPanel1Aument.add(jPanel2DadosPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 660, 220));
-
-//peiddo 2 base
-        JPanel jPanel2DadosPedido1 = new javax.swing.JPanel();
-
-        jPanel2DadosPedido1.setBackground(new java.awt.Color(204, 204, 204));
-
-        jPanel2DadosPedido1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 2, true));
-
-        jPanel2DadosPedido1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-// Código de subcomponentes e layouts - não mostrados aqui
-        jPanel1Aument.add(jPanel2DadosPedido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 660, 220));
-
-//codigo de aumentrar painel
-        jPanel1Aument = new javax.swing.JPanel();
-
-        jPanel1Aument.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel1Aument.setPreferredSize(new java.awt.Dimension(772, 1000));
-
-        jPanel1Aument.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-// Código de subcomponentes e layouts - não mostrados aqui
-        jScrollPanePedidos.setViewportView(jPanel1Aument);
 
     }
 
