@@ -3,28 +3,32 @@ package views;
 import Dao.PedidosDao;
 import entites.Pedido;
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-public class ProdutosPendentes extends javax.swing.JPanel {
+public class ProdutosEnviados extends javax.swing.JPanel {
 
-    private ArrayList<Pedido> pedidoPendentes = PedidosDao.pegardadosPedidosPendente();
-    public ProdutosPendentes() {
+    private ArrayList<Pedido> pedidos = PedidosDao.pegardadosPedidosEviandos();
+    
+    public ProdutosEnviados() {
         initComponents();
         aumentaEmostra();
     }
-
 
     
     private void aumentaEmostra() {
         
         int y = 50;
         int height = 580;
-        for (int i = 0; i < pedidoPendentes.size(); i++) {
+        for (int i = 0; i < pedidos.size(); i++) {
             
-
+               //aumentando painel para caber
+            if (i >= 2) {
+                height += 280;
+                jPanel1Aument.setPreferredSize(new java.awt.Dimension(772, height));
+            }
+            
             JPanel jPanel2DadosPedido = new javax.swing.JPanel();
 
             jPanel2DadosPedido.setBackground(new java.awt.Color(204, 204, 204));
@@ -59,7 +63,7 @@ public class ProdutosPendentes extends javax.swing.JPanel {
 
             cliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-            cliente.setText(pedidoPendentes.get(i).getNome());
+            cliente.setText(pedidos.get(i).getNome());
 
             cliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -88,7 +92,7 @@ public class ProdutosPendentes extends javax.swing.JPanel {
 
             endereco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-            endereco.setText(pedidoPendentes.get(i).getEndereco());
+            endereco.setText(pedidos.get(i).getEndereco());
 
             endereco.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -116,7 +120,7 @@ public class ProdutosPendentes extends javax.swing.JPanel {
 
             telefone.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-            telefone.setText(pedidoPendentes.get(i).getTelefone());
+            telefone.setText(pedidos.get(i).getTelefone());
 
             telefone.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -145,7 +149,7 @@ public class ProdutosPendentes extends javax.swing.JPanel {
 
             produto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-            produto.setText(pedidoPendentes.get(i).getPedido());
+            produto.setText(pedidos.get(i).getPedido());
 
             produto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -173,7 +177,7 @@ public class ProdutosPendentes extends javax.swing.JPanel {
 
             preco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-            preco.setText(String.valueOf(pedidoPendentes.get(i).getPreco()));
+            preco.setText(String.valueOf(pedidos.get(i).getPreco()));
 
             preco.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -202,26 +206,11 @@ public class ProdutosPendentes extends javax.swing.JPanel {
 
             status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-            status.setText(pedidoPendentes.get(i).getStatus());
+            status.setText(pedidos.get(i).getStatus());
 
             status.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
             jPanel2DadosPedido.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, -1));
-
-            //botao de enviar 
-            
-            JButton jButton1 = new javax.swing.JButton();
-
-            jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-            
-            jButton1.setText("Enviado");
-            
-            jPanel2DadosPedido.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, -1, -1));
-            int id = pedidoPendentes.get(i).getId();
-            jButton1.addActionListener((java.awt.event.ActionEvent evt) -> {
-                PedidosDao.atualizarstatusPedidoPendente(id);
-                jPanel2DadosPedido.setVisible(false);
-            });
 
             //separador
             JSeparator jSeparator1 = new javax.swing.JSeparator();
@@ -230,11 +219,7 @@ public class ProdutosPendentes extends javax.swing.JPanel {
 
             jPanel2DadosPedido.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 10, 190));
 
-            //aumentando painel para caber
-            if (i > 2) {
-                height += 280;
-                jPanel1Aument.setPreferredSize(new java.awt.Dimension(772, height));
-            }
+         
 
         }
 
@@ -257,8 +242,8 @@ public class ProdutosPendentes extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Pendentes");
-        jPanel1Aument.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+        jLabel1.setText("Enviados");
+        jPanel1Aument.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jScrollPanePedidos.setViewportView(jPanel1Aument);
 

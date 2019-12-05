@@ -87,6 +87,9 @@ public class JanelaPrinci extends javax.swing.JFrame {
             }
         });
         jLabel3Finalizados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3FinalizadosMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel3FinalizadosMouseExited(evt);
             }
@@ -194,12 +197,18 @@ public class JanelaPrinci extends javax.swing.JFrame {
         jLabel6Cancelados.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(204,204,204)));  
     }//GEN-LAST:event_jLabel6CanceladosMouseExited
 
+    //mostrando area de pedidos pendentes
     private void jLabel7PendentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7PendentesMouseClicked
-        // TODO add your handling code here:
         ProdutosPendentes pp = new ProdutosPendentes();
         jPanelSliderMostrarPaineis.add(pp);
         jPanelSliderMostrarPaineis.nextPanel(10, pp, rootPaneCheckingEnabled);
     }//GEN-LAST:event_jLabel7PendentesMouseClicked
+    //mostrando area de pedidos enviados
+    private void jLabel3FinalizadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3FinalizadosMouseClicked
+        ProdutosEnviados pe = new ProdutosEnviados();
+        jPanelSliderMostrarPaineis.add(pe);
+        jPanelSliderMostrarPaineis.nextPanel(10, pe, rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jLabel3FinalizadosMouseClicked
 
     public static void main(String args[]) {
         try {

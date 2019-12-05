@@ -1,12 +1,12 @@
 package entites;
 
-public class PedidoPendente {
+public class Pedido {
     
     private String nome,status,endereco,telefone,pedido;
     private double preco;
     private int id;
 
-    public PedidoPendente(String nome, String status, String endereco, String telefone, String pedido, double preco, int id) {
+    public Pedido(String nome, String status, String endereco, String telefone, String pedido, double preco, int id) {
         this.nome = nome;
         this.status = status;
         this.endereco = endereco;
