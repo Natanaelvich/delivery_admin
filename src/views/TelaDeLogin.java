@@ -1,6 +1,10 @@
 package views;
 
 import Dao.UserDao;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
@@ -22,10 +26,10 @@ public class TelaDeLogin extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jTextField1User = new javax.swing.JTextField();
-        jTextField2Senha = new javax.swing.JTextField();
         jLabel3Fechar = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel11UserAdnSenhaIncorret = new javax.swing.JLabel();
+        jTextField2Senha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,12 +65,6 @@ public class TelaDeLogin extends javax.swing.JFrame {
         jTextField1User.setBorder(null);
         jPanel2Login.add(jTextField1User, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 190, 40));
 
-        jTextField2Senha.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2Senha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField2Senha.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField2Senha.setBorder(null);
-        jPanel2Login.add(jTextField2Senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 314, 190, 40));
-
         jLabel3Fechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/icons8_Multiply_32px.png"))); // NOI18N
         jLabel3Fechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3Fechar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,6 +95,9 @@ public class TelaDeLogin extends javax.swing.JFrame {
         jLabel11UserAdnSenhaIncorret.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11UserAdnSenhaIncorret.setForeground(new java.awt.Color(255, 0, 0));
         jPanel2Login.add(jLabel11UserAdnSenhaIncorret, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, -1, -1));
+
+        jTextField2Senha.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2Login.add(jTextField2Senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 315, 190, 40));
 
         jPanel1.add(jPanel2Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 410, 560));
 
@@ -129,10 +130,33 @@ public class TelaDeLogin extends javax.swing.JFrame {
             janelaPrinci.setVisible(true);
         } else {
             jLabel11UserAdnSenhaIncorret.setText("Nome ou senha INCORRETOS");
+            vibrarLabelSenhaIncorreta(jLabel11UserAdnSenhaIncorret);
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //vibrar label 
+        private void vibrarLabelSenhaIncorreta( JLabel labelVibrar) {
+        int p = labelVibrar.getX();
+         new Thread() {
+            @Override
+            public void run() {
+                try {
+                    for (int i = 0; i < 3; i++) {
+                        labelVibrar.setLocation(p - 10, labelVibrar.getY());
+                        sleep(20);
+                        labelVibrar.setLocation(p + 10, labelVibrar.getY());
+                        sleep(20);
+                    }
+                    sleep(20);
+                    labelVibrar.setLocation(p, labelVibrar.getY());
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TelaDeLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }.start();
+
+    }
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
@@ -167,6 +191,6 @@ public class TelaDeLogin extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     public static javax.swing.JTextField jTextField1User;
-    public static javax.swing.JTextField jTextField2Senha;
+    public static javax.swing.JPasswordField jTextField2Senha;
     // End of variables declaration//GEN-END:variables
 }

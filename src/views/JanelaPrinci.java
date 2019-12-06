@@ -1,15 +1,18 @@
 package views;
 
+import Dao.PedidosDao;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
 
 public class JanelaPrinci extends javax.swing.JFrame {
 
-
+    private final String nomeEmpresa = PedidosDao.pegardadosPedidosPendente().get(1).getEmpresa();
+    
     public JanelaPrinci() {
         initComponents();
         this.setLocationRelativeTo(null);
+        jLabel1Empresa.setText(nomeEmpresa);
     }
 
     @SuppressWarnings("unchecked")
@@ -44,7 +47,7 @@ public class JanelaPrinci extends javax.swing.JFrame {
         jPanel1DadosEmpresa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1Empresa.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1Empresa.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1Empresa.setForeground(new java.awt.Color(255, 102, 0));
         jLabel1Empresa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1Empresa.setText("Empresa");
         jLabel1Empresa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -76,8 +79,8 @@ public class JanelaPrinci extends javax.swing.JFrame {
         jLabel3Finalizados.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3Finalizados.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3Finalizados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3Finalizados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/confirmado.png"))); // NOI18N
-        jLabel3Finalizados.setText("Pedidos Finalizados");
+        jLabel3Finalizados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/lambreta.png"))); // NOI18N
+        jLabel3Finalizados.setText("Pedidos Enviados");
         jLabel3Finalizados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3Finalizados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel3Finalizados.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -94,7 +97,7 @@ public class JanelaPrinci extends javax.swing.JFrame {
                 jLabel3FinalizadosMouseExited(evt);
             }
         });
-        jPanel1DadosEmpresa.add(jLabel3Finalizados, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 320, 190, 120));
+        jPanel1DadosEmpresa.add(jLabel3Finalizados, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 300, 190, 140));
 
         jLabel6Cancelados.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6Cancelados.setForeground(new java.awt.Color(102, 102, 102));
@@ -227,7 +230,7 @@ public class JanelaPrinci extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1Empresa;
+    public static javax.swing.JLabel jLabel1Empresa;
     private javax.swing.JLabel jLabel20Minimizar;
     private javax.swing.JLabel jLabel21Fechar;
     private javax.swing.JLabel jLabel3Finalizados;

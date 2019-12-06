@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class PedidosDao {
 
-    
+    //pegando pedidos pendentes
     public static ArrayList<Pedido> pegardadosPedidosPendente() {
         ArrayList<Pedido> pedidoPendentes = new ArrayList<>();
         try {
@@ -20,7 +20,7 @@ public class PedidosDao {
             Statement statement = conn.createStatement();
             String queryPrinci = "SELECT u.id,u.nome,eu.rua,eu.bairro,"
                     + "eu.numero,u.telefone,pr.descricao,"
-                    + "pr.preco,pr.id , pe.status,pe.id from pedido pe\n"
+                    + "pr.preco,pr.id , pe.status,pe.id,em.nome from pedido pe\n"
                     + "join usuario u\n"
                     + "on u.id = pe.id_usuario\n"
                     + "join endereco_user eu\n"
@@ -29,7 +29,7 @@ public class PedidosDao {
                     + "on pr.id = pe.id_produto\n"
                     + "join empresa em\n"
                     + "on em.id = pr.empresa_id\n"
-                    + "where em.id = "+UserDao.getUserID()
+                    + "where em.id = "+UserDao.getEmpresaUserID()
                     + " and pe.status = 'Pendente'\n"
                     + "order by pe.created_at;";
 
@@ -41,7 +41,8 @@ public class PedidosDao {
 
                 pedidoPendentes.add(new Pedido(res.getString("u.nome"),
                         res.getString("pe.status"), endereco, res.getString("u.telefone"),
-                        res.getString("pr.descricao"), res.getDouble("pr.preco"), res.getInt("pe.id")));
+                        res.getString("pr.descricao"),res.getString("em.nome"), res.getDouble("pr.preco"), 
+                        res.getInt("pe.id")));
             }
 
         } catch (SQLException ex) {
@@ -58,7 +59,7 @@ public class PedidosDao {
             Statement statement = conn.createStatement();
             String queryPrinci = "SELECT u.id,u.nome,eu.rua,eu.bairro,"
                     + "eu.numero,u.telefone,pr.descricao,"
-                    + "pr.preco,pr.id , pe.status,pe.id from pedido pe\n"
+                    + "pr.preco,pr.id , pe.status,pe.id,em.nome from pedido pe\n"
                     + "join usuario u\n"
                     + "on u.id = pe.id_usuario\n"
                     + "join endereco_user eu\n"
@@ -67,7 +68,7 @@ public class PedidosDao {
                     + "on pr.id = pe.id_produto\n"
                     + "join empresa em\n"
                     + "on em.id = pr.empresa_id\n"
-                    + "where em.id = "+UserDao.getUserID()
+                    + "where em.id = "+UserDao.getEmpresaUserID()
                     + " and pe.status = 'Enviado'\n"
                     + "order by pe.created_at;";
 
@@ -79,7 +80,8 @@ public class PedidosDao {
 
                 pedidoPendentes.add(new Pedido(res.getString("u.nome"),
                         res.getString("pe.status"), endereco, res.getString("u.telefone"),
-                        res.getString("pr.descricao"), res.getDouble("pr.preco"), res.getInt("pe.id")));
+                        res.getString("pr.descricao"),res.getString("em.nome"), res.getDouble("pr.preco"), 
+                        res.getInt("pe.id")));
             }
 
         } catch (SQLException ex) {
@@ -88,7 +90,7 @@ public class PedidosDao {
         return pedidoPendentes;
 
     }
-    
+    //atualizar estado de pedido para enviado
     public static void atualizarstatusPedidoPendente(int id){
         Connection conn = ConnectDao.getConnection();
         String sql = "UPDATE pedido SET  status = ? WHERE id = ?";

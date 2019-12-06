@@ -32,7 +32,7 @@ public class UserDao {
     }
     
         //buscando id do usuario
-    public static int getUserID() {
+    public static int getEmpresaUserID() {
        Connection conn = ConnectDao.getConnection();
 
         String sql = "SELECT * FROM admin WHERE  nome = '" + TelaDeLogin.jTextField1User.getText() + 
@@ -44,7 +44,7 @@ public class UserDao {
             statement = conn.createStatement();
             res = statement.executeQuery(sql);
             if (res.next()) {
-                id = res.getInt("id");
+                id = res.getInt("empresa_id");
             }
             //fechando conexoes
             ConnectDao.closeConnection(conn);

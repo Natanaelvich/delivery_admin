@@ -2,16 +2,17 @@ package entites;
 
 public class Pedido {
     
-    private String nome,status,endereco,telefone,pedido;
+    private String nome,status,endereco,telefone,pedido,empresa;
     private double preco;
     private int id;
 
-    public Pedido(String nome, String status, String endereco, String telefone, String pedido, double preco, int id) {
+    public Pedido(String nome, String status, String endereco, String telefone, String pedido, String empresa, double preco, int id) {
         this.nome = nome;
         this.status = status;
         this.endereco = endereco;
         this.telefone = telefone;
         this.pedido = pedido;
+        this.empresa = empresa;
         this.preco = preco;
         this.id = id;
     }
@@ -56,6 +57,14 @@ public class Pedido {
         this.pedido = pedido;
     }
 
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(String empresa) {
+        this.empresa = empresa;
+    }
+
     public double getPreco() {
         return preco;
     }
@@ -74,8 +83,10 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "PedidoPendente{" + "nome=" + nome + ", status=" + status + ", endereco=" + endereco + ", telefone=" + telefone + ", pedido=" + pedido + ", preco=" + preco + ", id=" + id + '}';
+        return "Pedido{" + "nome=" + nome + ", status=" + status + ", endereco=" + endereco + ", telefone=" + telefone + ", pedido=" + pedido + ", empresa=" + empresa + ", preco=" + preco + ", id=" + id + '}';
     }
+
+    
 
     
     
